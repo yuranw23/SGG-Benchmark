@@ -10,6 +10,7 @@ from sgg_benchmark.utils.txt_embeddings import rel_vectors
 from sgg_benchmark.modeling.roi_heads.relation_head.models.model_penet import PENetContext
 from sgg_benchmark.modeling.roi_heads.relation_head.predictors.default_predictors import BasePredictor
 
+
 @registry.ROI_RELATION_PREDICTOR.register("PENetSimplePredictor")
 class PrototypeEmbeddingNetwork(BasePredictor):
     def __init__(self, config, in_channels):
@@ -20,7 +21,7 @@ class PrototypeEmbeddingNetwork(BasePredictor):
 
         self.context_layer = PENetContext(config, self.obj_classes, self.rel_classes, in_channels, dropout_p=dropout_p)
 
-        self.mlp_dim = self.cfg.MODEL.ROI_BOX_HEAD.MLP_HEAD_DIM
+        self.mlp_dim = 2048 #self.cfg.MODEL.ROI_BOX_HEAD.MLP_HEAD_DIM
         self.embed_dim = self.cfg.MODEL.ROI_RELATION_HEAD.EMBED_DIM
 
         self.W_pred = MLP(self.embed_dim, self.mlp_dim // 2, self.mlp_dim, 2)
