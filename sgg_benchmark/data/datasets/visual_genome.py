@@ -71,6 +71,8 @@ class VGDataset(torch.utils.data.Dataset):
                 filter_non_overlap=self.filter_non_overlap,
             )
             self.filenames, self.img_info = load_image_filenames(img_dir, image_file) # length equals to split_mask
+            print(f'filenames length = {len(self.filenames)} || filename[0] = self.filenames[0]')
+
             self.filenames = [self.filenames[i] for i in np.where(self.split_mask)[0]]
             self.img_info = [self.img_info[i] for i in np.where(self.split_mask)[0]]
 
