@@ -81,7 +81,6 @@ MODEL:
       FUSION_TYPE: 'sum'              # candicates: 'sum', 'gate'         
       SEPARATE_SPATIAL: False         # separate spatial in union feature
       CONTEXT_LAYER: "motifs"         # candicates: motifs, vctree, vtranse
-      SPATIAL_FOR_VISION: True
       EFFECT_ANALYSIS: True
     ############### Parameters for Transformer Predictor ##############
     TRANSFORMER:
