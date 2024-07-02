@@ -29,10 +29,10 @@ class BasePredictor(nn.Module):
         # load base parameters
         self.cfg = config
 
-        # self.statistics = get_dataset_statistics(self.cfg)
+        self.statistics = get_dataset_statistics(self.cfg)
 
-        # self.obj_classes = self.statistics['obj_classes']
-        # self.rel_classes = self.statistics['rel_classes']
+        self.obj_classes = self.statistics['obj_classes']
+        self.rel_classes = self.statistics['rel_classes']
 
         self.attribute_on = config.MODEL.ATTRIBUTE_ON
 

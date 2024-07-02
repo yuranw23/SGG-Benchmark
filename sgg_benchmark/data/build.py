@@ -50,6 +50,7 @@ def get_dataset_statistics(cfg):
         data = DatasetCatalog.get(dataset_name, cfg)
         factory = getattr(D, data["factory"])
         args = data["args"]
+        print(f'args: {args}')
         dataset = factory(**args)
         statistics.append(dataset.get_statistics())
     # dict with statistics[0]['rel_classes'] as keys and statistics[0]['pred_prop'] as values
