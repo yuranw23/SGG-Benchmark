@@ -62,8 +62,10 @@ class DatasetCatalog(object):
             )
         elif ("VG" in name) or ('GQA' in name):
             # name should be something like VG_stanford_filtered_train
+            print(f'original name = {name}')
             p = name.rfind("_")
             name, split = name[:p], name[p+1:]
+            print(f'name = {name} || split = {split}')
             assert name in DatasetCatalog.DATASETS and split in {'train', 'val', 'test'}
             data_dir = DatasetCatalog.DATA_DIR
             args = copy.deepcopy(DatasetCatalog.DATASETS[name])
