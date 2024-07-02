@@ -1,0 +1,39 @@
+2024-07-02 16:10:06.270 | INFO     | sgg_benchmark.utils.loggersetup_logger31 - Using loguru logger with level: INFO
+2024-07-02 16:10:06.270 | INFO     | __main__main53 - Using 1 GPUs
+2024-07-02 16:10:06.270 | INFO     | sgg_benchmark.utils.loggerlogger_step15 - #################### Step 1: Collecting environment info... ####################
+2024-07-02 16:10:08.940 | INFO     | sgg_benchmark.data.buildget_dataset_statistics30 - ----------------------------------------------------------------------------------------------------
+2024-07-02 16:10:08.940 | INFO     | sgg_benchmark.data.buildget_dataset_statistics31 - get dataset statistics...
+2024-07-02 16:10:08.941 | INFO     | sgg_benchmark.data.buildget_dataset_statistics46 - Unable to load data statistics from: /home/yuranw/SGG-Benchmark/output/PENET/VG_stanford_filtered_with_attribute_train_statistics.cache
+2024-07-02 16:12:50.629 | INFO     | sgg_benchmark.utils.loggersetup_logger31 - Using loguru logger with level: INFO
+2024-07-02 16:12:50.629 | INFO     | __main__main53 - Using 1 GPUs
+2024-07-02 16:12:50.630 | INFO     | sgg_benchmark.utils.loggerlogger_step15 - #################### Step 1: Collecting environment info... ####################
+2024-07-02 16:12:53.294 | INFO     | sgg_benchmark.data.buildget_dataset_statistics30 - ----------------------------------------------------------------------------------------------------
+2024-07-02 16:12:53.295 | INFO     | sgg_benchmark.data.buildget_dataset_statistics31 - get dataset statistics...
+2024-07-02 16:12:53.295 | INFO     | sgg_benchmark.data.buildget_dataset_statistics46 - Unable to load data statistics from: /home/yuranw/SGG-Benchmark/output/PENET/VG_stanford_filtered_with_attribute_train_statistics.cache
+2024-07-02 16:15:02.266 | INFO     | sgg_benchmark.utils.loggersetup_logger31 - Using loguru logger with level: INFO
+2024-07-02 16:15:02.266 | INFO     | __main__main53 - Using 1 GPUs
+2024-07-02 16:15:02.266 | INFO     | sgg_benchmark.utils.loggerlogger_step15 - #################### Step 1: Collecting environment info... ####################
+2024-07-02 16:15:04.970 | INFO     | sgg_benchmark.data.buildget_dataset_statistics30 - ----------------------------------------------------------------------------------------------------
+2024-07-02 16:15:04.971 | INFO     | sgg_benchmark.data.buildget_dataset_statistics31 - get dataset statistics...
+2024-07-02 16:15:04.972 | INFO     | sgg_benchmark.data.buildget_dataset_statistics46 - Unable to load data statistics from: /home/yuranw/SGG-Benchmark/output/PENET/VG150_train_statistics.cache
+2024-07-02 16:21:57.284 | INFO     | sgg_benchmark.utils.loggersetup_logger31 - Using loguru logger with level: INFO
+2024-07-02 16:21:57.284 | INFO     | __main__main53 - Using 1 GPUs
+2024-07-02 16:21:57.284 | INFO     | sgg_benchmark.utils.loggerlogger_step15 - #################### Step 1: Collecting environment info... ####################
+2024-07-02 16:21:59.949 | INFO     | sgg_benchmark.data.buildget_dataset_statistics30 - ----------------------------------------------------------------------------------------------------
+2024-07-02 16:21:59.950 | INFO     | sgg_benchmark.data.buildget_dataset_statistics31 - get dataset statistics...
+2024-07-02 16:21:59.950 | INFO     | sgg_benchmark.data.buildget_dataset_statistics46 - Unable to load data statistics from: /home/yuranw/SGG-Benchmark/output/PENET/VG150_train_statistics.cache
+2024-07-02 16:29:16.539 | INFO     | sgg_benchmark.utils.loggersetup_logger31 - Using loguru logger with level: INFO
+2024-07-02 16:29:16.540 | INFO     | __main__main53 - Using 1 GPUs
+2024-07-02 16:29:16.540 | INFO     | sgg_benchmark.utils.loggerlogger_step15 - #################### Step 1: Collecting environment info... ####################
+2024-07-02 16:29:19.209 | INFO     | sgg_benchmark.data.buildget_dataset_statistics30 - ----------------------------------------------------------------------------------------------------
+2024-07-02 16:29:19.209 | INFO     | sgg_benchmark.data.buildget_dataset_statistics31 - get dataset statistics...
+2024-07-02 16:29:19.210 | INFO     | sgg_benchmark.data.buildget_dataset_statistics46 - Unable to load data statistics from: /home/yuranw/SGG-Benchmark/output/PENET/VG150_train_statistics.cache
+2024-07-02 16:46:19.872 | INFO     | sgg_benchmark.utils.loggersetup_logger31 - Using loguru logger with level: INFO
+2024-07-02 16:46:19.872 | INFO     | __main__main53 - Using 1 GPUs
+2024-07-02 16:46:19.872 | INFO     | sgg_benchmark.utils.loggerlogger_step15 - #################### Step 1: Collecting environment info... ####################
+2024-07-02 16:46:22.539 | INFO     | sgg_benchmark.data.buildget_dataset_statistics30 - ----------------------------------------------------------------------------------------------------
+2024-07-02 16:46:22.539 | INFO     | sgg_benchmark.data.buildget_dataset_statistics31 - get dataset statistics...
+2024-07-02 16:46:22.540 | INFO     | sgg_benchmark.data.buildget_dataset_statistics46 - Unable to load data statistics from: /home/yuranw/SGG-Benchmark/output/PENET/VG150_train_statistics.cache
+2024-07-02 17:15:12.379 | INFO     | sgg_benchmark.utils.loggersetup_logger31 - Using loguru logger with level: INFO
+2024-07-02 17:15:12.379 | INFO     | __main__main53 - Using 1 GPUs
+2024-07-02 17:15:12.379 | INFO     | sgg_benchmark.utils.loggerlogger_step15 - #################### Step 1: Collecting environment info... ####################
