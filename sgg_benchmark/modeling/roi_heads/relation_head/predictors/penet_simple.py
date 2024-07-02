@@ -22,7 +22,7 @@ class PrototypeEmbeddingNetwork(BasePredictor):
         self.context_layer = PENetContext(config, self.obj_classes, self.rel_classes, in_channels, dropout_p=dropout_p)
 
         self.mlp_dim = 2048 #self.cfg.MODEL.ROI_BOX_HEAD.MLP_HEAD_DIM
-        self.embed_dim = self.cfg.MODEL.ROI_RELATION_HEAD.EMBED_DIM
+        self.embed_dim = 300 #self.cfg.MODEL.ROI_RELATION_HEAD.EMBED_DIM
 
         self.W_pred = MLP(self.embed_dim, self.mlp_dim // 2, self.mlp_dim, 2)
         self.dropout_rel_rep = nn.Dropout(dropout_p)
