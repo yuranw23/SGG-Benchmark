@@ -76,10 +76,10 @@ class VGDataset(torch.utils.data.Dataset):
             self.filenames = [self.filenames[i] for i in np.where(self.split_mask)[0]]
             self.img_info = [self.img_info[i] for i in np.where(self.split_mask)[0]]
 
-            if informative_file is not None:
-                self.informative_graphs = json.load(open(informative_file, 'r'))
-            else:
-                self.informative_graphs = {img['image_id']: [] for img in self.img_info}
+            # if informative_file is not None:
+            #     self.informative_graphs = json.load(open(informative_file, 'r'))
+            # else:
+            self.informative_graphs = {img['image_id']: [] for img in self.img_info}
 
             assert(len(self.filenames) == len(self.gt_boxes) == len(self.gt_classes) == len(self.relationships) == len(self.img_info))
 
