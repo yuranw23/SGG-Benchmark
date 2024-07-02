@@ -30,11 +30,11 @@ class ROIRelationHead(torch.nn.Module):
             self.box_feature_extractor = make_roi_box_feature_extractor(cfg, in_channels)
             feat_dim = self.box_feature_extractor.out_channels
         
-        if not cfg.TEST.CUSTUM_EVAL:
-            statistics = get_dataset_statistics(cfg)
-            pred_prop = statistics['pred_freq']
-            pred_weight = statistics['pred_weight']
-            self.loss_evaluator = make_roi_relation_loss_evaluator(cfg, pred_prop, pred_weight)
+        # if not cfg.TEST.CUSTUM_EVAL:
+        #     statistics = get_dataset_statistics(cfg)
+        #     pred_prop = statistics['pred_freq']
+        #     pred_weight = statistics['pred_weight']
+        #     self.loss_evaluator = make_roi_relation_loss_evaluator(cfg, pred_prop, pred_weight)
 
         self.predictor = make_roi_relation_predictor(cfg, feat_dim)
         self.post_processor = make_roi_relation_post_processor(cfg)
