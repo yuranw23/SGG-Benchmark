@@ -71,7 +71,7 @@ if __name__ == '__main__':
 
     macc_dict = {}
     for pred in correct_pred_dict:
-        macc_dict[pred] = correct_pred_dict[pred] / total_pred_dict
+        macc_dict[pred] = correct_pred_dict[pred] / total_pred_dict[pred]
     
     print(macc_dict)
     print("=========================")
