@@ -20,13 +20,13 @@ def do_vg_evaluation(
     informative=False,
 ):
     # get zeroshot triplet
-    if "relations" in iou_types:
-        data_dir = DatasetCatalog.DATA_DIR
-        try:
-            zero_shot_file = DatasetCatalog.DATASETS[dataset_name]['zeroshot_file']
-            zeroshot_triplet = torch.load(os.path.join(data_dir, zero_shot_file), map_location=torch.device("cpu")).long().numpy()
-        except KeyError:
-            zeroshot_triplet = np.array([])
+    # if "relations" in iou_types:
+    #     data_dir = DatasetCatalog.DATA_DIR
+    #     try:
+    #         zero_shot_file = DatasetCatalog.DATASETS[dataset_name]['zeroshot_file']
+    #         zeroshot_triplet = torch.load(os.path.join(data_dir, zero_shot_file), map_location=torch.device("cpu")).long().numpy()
+    #     except KeyError:
+    #         zeroshot_triplet = np.array([])
 
     #attribute_on = cfg.MODEL.ATTRIBUTE_ON
     #num_attributes = cfg.MODEL.ROI_ATTRIBUTE_HEAD.NUM_ATTRIBUTES
@@ -131,14 +131,14 @@ def do_vg_evaluation(
         evaluator['eval_nog_recall'] = eval_nog_recall
 
         # test on different distribution
-        eval_zeroshot_recall = SGZeroShotRecall(result_dict)
-        eval_zeroshot_recall.register_container(mode)
-        evaluator['eval_zeroshot_recall'] = eval_zeroshot_recall
+        # eval_zeroshot_recall = SGZeroShotRecall(result_dict)
+        # eval_zeroshot_recall.register_container(mode)
+        # evaluator['eval_zeroshot_recall'] = eval_zeroshot_recall
 
         # test on no graph constraint zero-shot recall
-        eval_ng_zeroshot_recall = SGNGZeroShotRecall(result_dict)
-        eval_ng_zeroshot_recall.register_container(mode)
-        evaluator['eval_ng_zeroshot_recall'] = eval_ng_zeroshot_recall
+        # eval_ng_zeroshot_recall = SGNGZeroShotRecall(result_dict)
+        # eval_ng_zeroshot_recall.register_container(mode)
+        # evaluator['eval_ng_zeroshot_recall'] = eval_ng_zeroshot_recall
         
         # used by https://github.com/NVIDIA/ContrastiveLosses4VRD for sgcls and predcls
         eval_pair_accuracy = SGPairAccuracy(result_dict)
@@ -175,7 +175,7 @@ def do_vg_evaluation(
 
         # prepare all inputs
         global_container = {}
-        global_container['zeroshot_triplet'] = zeroshot_triplet
+        # global_container['zeroshot_triplet'] = zeroshot_triplet
         global_container['result_dict'] = result_dict
         global_container['mode'] = mode
         global_container['multiple_preds'] = multiple_preds
@@ -205,8 +205,8 @@ def do_vg_evaluation(
         # print result
         result_str += eval_recall.generate_print_string(mode)
         result_str += eval_nog_recall.generate_print_string(mode)
-        result_str += eval_zeroshot_recall.generate_print_string(mode)
-        result_str += eval_ng_zeroshot_recall.generate_print_string(mode)
+        # result_str += eval_zeroshot_recall.generate_print_string(mode)
+        # result_str += eval_ng_zeroshot_recall.generate_print_string(mode)
         result_str += eval_mean_recall.generate_print_string(mode)
         result_str += eval_ng_mean_recall.generate_print_string(mode)
         result_str += eval_f1_score.generate_print_string(mode)
@@ -301,8 +301,8 @@ def evaluate_relation_of_one_image(groundtruth, prediction, global_container, ev
         evaluator['eval_pair_accuracy'].prepare_gtpair(local_container)
 
     # to calculate the prior label based on statistics
-    evaluator['eval_zeroshot_recall'].prepare_zeroshot(global_container, local_container)
-    evaluator['eval_ng_zeroshot_recall'].prepare_zeroshot(global_container, local_container)
+    # evaluator['eval_zeroshot_recall'].prepare_zeroshot(global_container, local_container)
+    # evaluator['eval_ng_zeroshot_recall'].prepare_zeroshot(global_container, local_container)
 
     if mode == 'predcls':
         local_container['pred_boxes'] = local_container['gt_boxes']
@@ -362,15 +362,15 @@ def evaluate_relation_of_one_image(groundtruth, prediction, global_container, ev
     # No Graph Constraint Mean Recall
     evaluator['eval_ng_mean_recall'].collect_mean_recall_items(global_container, local_container, mode)
     # Zero shot Recall
-    evaluator['eval_zeroshot_recall'].calculate_recall(global_container, local_container, mode)
+    # evaluator['eval_zeroshot_recall'].calculate_recall(global_container, local_container, mode)
     # No Graph Constraint Zero-Shot Recall
-    evaluator['eval_ng_zeroshot_recall'].calculate_recall(global_container, local_container, mode)
+    # evaluator['eval_ng_zeroshot_recall'].calculate_recall(global_container, local_container, mode)
 
-    if informative:
-        evaluator['eval_informative_recall'].calculate_recall(global_container, local_container, mode)
+    # if informative:
+    #     evaluator['eval_informative_recall'].calculate_recall(global_container, local_container, mode)
 
-        evaluator['eval_relative_recall'].calculate_recall(global_container, local_container, mode)
-        evaluator['eval_mean_relative_recall'].collect_mean_recall_items(global_container, local_container, mode)
+    #     evaluator['eval_relative_recall'].calculate_recall(global_container, local_container, mode)
+    #     evaluator['eval_mean_relative_recall'].collect_mean_recall_items(global_container, local_container, mode)
         
     return 
 
