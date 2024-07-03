@@ -1,4 +1,5 @@
 import torch
+import json
 import argparse
 
 if __name__ == '__main__':
@@ -9,6 +10,10 @@ if __name__ == '__main__':
     print(output_dir)
 
     # result_dict = torch.load('inference/result_dict.pytorch')
+    vocab_file = json.load(open('/home/yuranw/SGG-Benchmark/datasets/VG150/VG-SGG-dicts-with-attri.json'))
+    idx2label = vocab_file['idx_to_label']
+    idx2pred = vocab_file['idx_to_predicate']
+
     eval_results = torch.load(f'{output_dir}inference/eval_results.pytorch')
     groundtruths = eval_results['groundtruths']
     predictions = eval_results['predictions']
@@ -18,6 +23,9 @@ if __name__ == '__main__':
     total_obj = 0
     correct_pred = 0
     total_pred = 0
+
+    correct_pred_dict = {}
+    total_pred_dict = {}
 
     for i in range(len(predictions)):
         groundtruth = groundtruths[i]
@@ -43,9 +51,30 @@ if __name__ == '__main__':
             gt_pred = gt_rel[-1].item()
             pair_idx = pred_rel_pair.index(obj_pair)
             pred_rel = pred_rel_label[pair_idx].item()
+
+            gt_pred_eng = str(idx2pred[gt_pred])
+            if gt_pred_eng not in total_pred_dict:
+                total_pred_dict[gt_pred_eng] = 0
+                correct_pred_dict[gt_pred_eng] = 0
             if pred_rel == gt_pred:
-                correct_pred += 1        
+                correct_pred += 1
+                correct_pred_dict[gt_pred_eng] += 1
+                total_pred_dict[gt_pred_eng] += 1
+            else:
+                total_pred_dict[gt_pred_eng] += 1
+
+             
         
     print(f'correct obj = {correct_obj} || total obj = {total_obj} || correct pred = {correct_pred} || total pred = {total_pred}')
     print(f'obj acc = {correct_obj / total_obj}')
     print(f'pred acc = {correct_pred / total_pred}')
+
+    macc_dict = {}
+    for pred in correct_pred_dict:
+        macc_dict[pred] = correct_pred_dict[pred] / total_pred_dict
+    
+    print(macc_dict)
+    print("=========================")
+    print(correct_pred_dict)
+    print("=========================")
+    print(total_pred_dict)
