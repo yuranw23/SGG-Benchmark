@@ -176,6 +176,7 @@ class DecoderRNN(nn.Module):
                 out_commitments.append(labels_to_embed)
                 previous_obj_embed = self.obj_embed(labels_to_embed+1)
             else:
+                print(f'l_batch = {l_batch}')
                 assert l_batch == 1
                 out_dist_sample = F.softmax(pred_dist, dim=1)
                 best_ind = out_dist_sample[:, 1:].max(1)[1] + 1
