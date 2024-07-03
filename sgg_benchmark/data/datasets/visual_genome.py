@@ -239,8 +239,8 @@ class VGDataset(torch.utils.data.Dataset):
         if evaluation:
             target = target.clip_to_image(remove_empty=False)
             target.add_field("relation_tuple", torch.LongTensor(relation)) # for evaluation
-            if self.informative_graphs is not None:
-                target.add_field("informative_rels", self.informative_graphs[str(img_info['image_id'])])
+            # if self.informative_graphs is not None:
+            #     target.add_field("informative_rels", self.informative_graphs[str(img_info['image_id'])])
         else:
             target = target.clip_to_image(remove_empty=True)        
 
