@@ -227,7 +227,7 @@ def do_vg_evaluation(
         result_dict['detector_mAP@50'] = mAp
         if output_folder:
             torch.save(result_dict, os.path.join(output_folder, 'result_dict.pytorch'))
-            save_output(output_folder, groundtruth, predictions, dataset)
+            save_output(output_folder, groundtruths, predictions, dataset)
         return result_dict
     elif "bbox" in iou_types:
         return {'mAP': float(mAp)}
