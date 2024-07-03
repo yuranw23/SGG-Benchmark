@@ -52,7 +52,7 @@ if __name__ == '__main__':
             pair_idx = pred_rel_pair.index(obj_pair)
             pred_rel = pred_rel_label[pair_idx].item()
 
-            gt_pred_eng = str(idx2pred[gt_pred])
+            gt_pred_eng = idx2pred[str(gt_pred)]
             if gt_pred_eng not in total_pred_dict:
                 total_pred_dict[gt_pred_eng] = 0
                 correct_pred_dict[gt_pred_eng] = 0
