@@ -23,9 +23,12 @@ if __name__ == '__main__':
     total_obj = 0
     correct_pred = 0
     total_pred = 0
+    correct_object_all = 0
+    correct_scene = 0
 
     correct_pred_dict = {}
     total_pred_dict = {}
+    total_scene = 0
 
     for i in range(len(predictions)):
         groundtruth = groundtruths[i]
@@ -35,8 +38,8 @@ if __name__ == '__main__':
         labels = prediction.get_field('labels')
         predict_logits = prediction.get_field('predict_logits')
         pred_labels = torch.argmax(predict_logits, axis=1)
-        correct_obj += sum(labels == pred_labels).item()
-        total_obj += len(labels)
+        # correct_obj += sum(labels == pred_labels).item()
+        # total_obj += len(labels)
 
         # predicate metric
         gt_rels = groundtruth.get_field('relation_tuple')
@@ -47,27 +50,52 @@ if __name__ == '__main__':
         pred_rel_score, pred_rel_label = pred_rel_label.max(-1)
 
         for gt_rel in gt_rels:
+            pred_correct = False
+            obj_correct = False
+            sub_correct = False
+            
             obj_pair = gt_rel[:2].tolist()
             gt_pred = gt_rel[-1].item()
             pair_idx = pred_rel_pair.index(obj_pair)
             pred_rel = pred_rel_label[pair_idx].item()
+
+            if labels[obj_pair[0]].item() == pred_labels[obj_pair[0]].item():
+                obj_correct = True
+            if labels[obj_pair[1]].item() == pred_labels[obj_pair[1]].item():
+                sub_correct = True
 
             gt_pred_eng = idx2pred[str(gt_pred)]
             if gt_pred_eng not in total_pred_dict:
                 total_pred_dict[gt_pred_eng] = 0
                 correct_pred_dict[gt_pred_eng] = 0
             if pred_rel == gt_pred:
+                pred_correct = True
                 correct_pred += 1
                 correct_pred_dict[gt_pred_eng] += 1
                 total_pred_dict[gt_pred_eng] += 1
             else:
                 total_pred_dict[gt_pred_eng] += 1
+            
+            if obj_correct:
+                correct_obj += 1
+            if sub_correct:
+                correct_obj += 1
+            if obj_correct and sub_correct:
+                correct_object_all += 1
+            if obj_correct and sub_correct and pred_correct:
+                correct_scene += 1
+            total_obj += 2
+            total_scene += 1
+            
 
              
         
     print(f'correct obj = {correct_obj} || total obj = {total_obj} || correct pred = {correct_pred} || total pred = {total_pred}')
-    print(f'obj acc = {correct_obj / total_obj}')
     print(f'pred acc = {correct_pred / total_pred}')
+    print(f'obj acc = {correct_obj / total_obj}')
+    print(f'obj_all acc = {correct_object_all / total_scene}')
+    print(f'scene acc = {correct_scene / total_scene}')
+    
 
     macc_dict = {}
     for pred in correct_pred_dict:
