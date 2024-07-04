@@ -3,13 +3,9 @@ DATALOADER:
   NUM_WORKERS: 4
   SIZE_DIVISIBILITY: 32
 DATASETS:
-  LOAD_PRECOMPUTE_DETECTION_BOX: false
-  TEST:
-  - VG_stanford_filtered_with_attribute_test
-  TRAIN:
-  - VG_stanford_filtered_with_attribute_train
-  VAL:
-  - VG_stanford_filtered_with_attribute_val
+  TRAIN: ("VG150_train",)
+  VAL: ("VG150_val",)
+  TEST: ("VG150_test",)
 DEBUG: false
 DTYPE: float32
 EXPERIMENT_NAME: FinalExp3
