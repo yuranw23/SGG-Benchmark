@@ -61,7 +61,6 @@ MODEL:
     DIM_PER_GP: -1
     EPSILON: 1.0e-05
     NUM_GROUPS: 32
-  KEYPOINT_ON: false
   MASK_ON: false
   META_ARCHITECTURE: GeneralizedRCNN
   PRETRAINED_DETECTOR_CKPT: checkpoints/detection/pretrained_faster_rcnn/vg_faster_det.pth
