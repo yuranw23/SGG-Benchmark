@@ -80,7 +80,7 @@ class ROIBoxHead(torch.nn.Module):
                     # mode==sgcls
                     # add field:class_logits into gt proposals, note field:labels is still gt
                     class_logits, _ = self.predictor(x)
-                    print(self.cfg.MODEL.ROI_RELATION_HEAD.PREDICTOR, self.cfg.MODEL.ROI_RELATION_HEAD.PREDICTOR == 'SquatPredictor')
+                    # print(self.cfg.MODEL.ROI_RELATION_HEAD.PREDICTOR, self.cfg.MODEL.ROI_RELATION_HEAD.PREDICTOR == 'SquatPredictor')
                     if self.cfg.MODEL.ROI_RELATION_HEAD.PREDICTOR == 'SquatPredictor':
                         proposals = add_predict_info(proposals, class_logits)
                     else:

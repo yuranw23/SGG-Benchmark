@@ -68,7 +68,6 @@ class BasePredictor(nn.Module):
 @registry.ROI_RELATION_PREDICTOR.register("IMPPredictor")
 class IMPPredictor(BasePredictor):
     def __init__(self, config, in_channels):
-        # print(f'in_channels = {in_channels}')
         super().__init__(config, in_channels)
         # super(BasePredictor, self).__init__(config, in_channels)
 
