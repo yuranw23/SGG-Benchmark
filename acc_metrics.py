@@ -14,7 +14,7 @@ if __name__ == '__main__':
     idx2label = vocab_file['idx_to_label']
     idx2pred = vocab_file['idx_to_predicate']
 
-    eval_results = torch.load(f'{output_dir}inference/eval_results.pytorch')
+    eval_results = torch.load(f'{output_dir}/eval_results.pytorch')
     groundtruths = eval_results['groundtruths']
     predictions = eval_results['predictions']
 
