@@ -7,7 +7,6 @@ DATASETS:
   VAL: ("VG150_val",)
   TEST: ("VG150_test",)
 DTYPE: float32
-GLOBAL_BUFFER_ON: false
 GLOVE_DIR: datasets/vg/stanford_spilt/glove
 INPUT:
   BRIGHTNESS: 0.0
