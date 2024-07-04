@@ -7,12 +7,32 @@ from .roi_box_predictors import make_roi_box_predictor
 from .inference import make_roi_box_post_processor
 from .loss import make_roi_box_loss_evaluator
 from .sampling import make_roi_box_samp_processor
+from sgg_benchmark.modeling.roi_heads.relation_head.models.utils.utils_relation import obj_prediction_nms
 
 def add_predict_logits(proposals, class_logits):
     slice_idxs = [0]
     for i in range(len(proposals)):
         slice_idxs.append(len(proposals[i])+slice_idxs[-1])
         proposals[i].add_field("predict_logits", class_logits[slice_idxs[i]:slice_idxs[i+1]])
+    return proposals
+
+def add_predict_info(proposals, class_logits):
+    slice_idxs = [0]
+    for i, p in enumerate(proposals):
+        slice_idxs.append(len(p) + slice_idxs[-1])
+        obj_pred_logits = class_logits[slice_idxs[i]:slice_idxs[i + 1]]
+        p.add_field("predict_logits", obj_pred_logits)
+        boxes_per_cls = p.bbox.unsqueeze(1).expand(p.bbox.shape[0], obj_pred_logits.shape[-1],
+                                                   p.bbox.shape[-1]).contiguous()
+        p.add_field("boxes_per_cls", boxes_per_cls)
+        obj_pred_labels = obj_prediction_nms(boxes_per_cls, obj_pred_logits, nms_thresh=0.5)
+        p.add_field("pred_labels", obj_pred_labels)
+
+        obj_scores = torch.softmax(obj_pred_logits, 1).detach()
+        obj_score_ind = torch.arange(obj_pred_logits.shape[0], device=obj_scores.device) * obj_pred_logits.shape[
+            1] + obj_pred_labels
+        obj_scores = obj_scores.view(-1)[obj_score_ind]
+        p.add_field("pred_scores", obj_scores)
     return proposals
 
 class ROIBoxHead(torch.nn.Module):
@@ -60,7 +80,11 @@ class ROIBoxHead(torch.nn.Module):
                     # mode==sgcls
                     # add field:class_logits into gt proposals, note field:labels is still gt
                     class_logits, _ = self.predictor(x)
-                    proposals = add_predict_logits(proposals, class_logits)
+                    print(self.cfg.MODEL.ROI_RELATION_HEAD.PREDICTOR, self.cfg.MODEL.ROI_RELATION_HEAD.PREDICTOR == 'SquatPredictor')
+                    if self.cfg.MODEL.ROI_RELATION_HEAD.PREDICTOR == 'SquatPredictor':
+                        proposals = add_predict_info(proposals, class_logits)
+                    else:
+                        proposals = add_predict_logits(proposals, class_logits)
                     return x, proposals, {}
             else:
                 # mode==sgdet
