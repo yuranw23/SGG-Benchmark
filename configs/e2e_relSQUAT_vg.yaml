@@ -6,7 +6,6 @@ DATASETS:
   TRAIN: ("VG150_train",)
   VAL: ("VG150_val",)
   TEST: ("VG150_test",)
-DEBUG: false
 DTYPE: float32
 EXPERIMENT_NAME: FinalExp3
 GLOBAL_BUFFER_ON: false
