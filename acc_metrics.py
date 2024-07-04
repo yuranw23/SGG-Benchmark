@@ -6,7 +6,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--model', type=str, required=True)
     args = parser.parse_args()
-    output_dir = f'/home/yuranw/SGG-Benchmark/output/{args.model}/'
+    output_dir = f'/home/yuranw/SGG-Benchmark/{args.model}/'
     print(output_dir)
 
     # result_dict = torch.load('inference/result_dict.pytorch')
