@@ -70,10 +70,12 @@ class RUNetPredictor(BasePredictor):
         res = (x1[..., None] == x2.t()[None, ...]).prod(1)
         return res
 
-    def forward(self, proposals, rel_pair_idxs, pair_idxs, rel_labels,
-                rel_binarys, roi_features, union_features, logger=None):
+    # def forward(self, proposals, rel_pair_idxs, pair_idxs, rel_labels,
+    #             rel_binarys, roi_features, union_features, logger=None):
+    def forward(self, proposals, rel_pair_idxs, rel_labels, rel_binarys, roi_features, union_features, logger=None):
+        print(f'rel_pair_idxs = {rel_pair_idxs}')
         obj_dists, obj_preds, obj_feats_nonlocal = self.context_layer(roi_features, proposals,
-                                                            union_features, pair_idxs, logger)
+                                                            union_features, rel_pair_idxs, logger)
         add_losses = {}
 
         obj_preds_embeds = self.ort_embedding.index_select(0, obj_preds.long())
