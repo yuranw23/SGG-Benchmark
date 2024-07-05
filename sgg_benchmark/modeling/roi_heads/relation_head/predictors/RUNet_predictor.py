@@ -31,7 +31,7 @@ class RUNetPredictor(BasePredictor):
         # self.obj_mps2 = Message_Passing4OBJ(self.hidden_dim)
         self.get_boxes_encode = Boxes_Encode()
 
-        self.context_layer = RUNetContext(config, self.num_obj_cls, self.pooling_dim,
+        self.context_layer = RUNetContext(config, self.obj_classes, self.pooling_dim,
                                            200, self.hidden_dim)
 
         self.ort_embedding = nn.Parameter(self.get_ort_embeds(self.num_obj_cls, 200), requires_grad=False)
