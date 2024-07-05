@@ -4,11 +4,8 @@ from torch import nn
 from torch.nn import functional as F
 from sgg_benchmark.modeling.utils import cat
 from sgg_benchmark.utils.txt_embeddings import obj_edge_vectors
-from .utils.utils_motifs import obj_edge_vectors, center_x, sort_by_score, to_onehot, get_dropout_mask, encode_box_info
-from .utils.utils_relation import nms_overlaps, layer_init
-from sgg_benchmark.structures.boxlist_ops import boxlist_iou
-import scipy.stats
-import random
+from .utils.utils_motifs import to_onehot
+from .utils.utils_relation import nms_overlaps
 
 def encode_box_info(proposals):
     """
