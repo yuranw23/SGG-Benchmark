@@ -207,7 +207,7 @@ class Message_Passing4OBJ(nn.Module):
 class RUNetContext(nn.Module):
     def __init__(self, config, obj_class, obj_dim=4096, embed_dim=200, hidden_dim=512):
         super(RUNetContext, self).__init__()
-        self.num_obj_cls = len(obj_class)
+        self.num_obj_cls = obj_class
         self.cfg = config
         # self.mode = mode
         self.embed_dim = embed_dim
