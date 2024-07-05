@@ -82,12 +82,10 @@ class RUNetPredictor(BasePredictor):
 
         num_rels = [r.shape[0] for r in rel_pair_idxs]
         num_objs = [len(b) for b in proposals]
-        num_pairs = [p.shape[0] for p in pair_idxs]
 
         assert len(num_rels) == len(num_objs)
-        assert len(num_rels) == len(num_pairs)
 
-        union_features = union_features.split(num_pairs, dim=0)
+        union_features = union_features.split(num_rels, dim=0)
         roi_features = roi_features.split(num_objs, dim=0)
         obj_preds = obj_preds.split(num_objs, dim=0)
         obj_preds_embeds = obj_preds_embeds.split(num_objs, dim=0)
@@ -97,7 +95,7 @@ class RUNetPredictor(BasePredictor):
         spt_feats = []
 
         for rel_pair_idx, pair_idx, obj_pred, roi_feat, union_feat, obj_embed, bboxes, nonlocal_obj_feat in zip(
-            rel_pair_idxs, pair_idxs, obj_preds, roi_features, union_features,
+            rel_pair_idxs, obj_preds, roi_features, union_features,
             obj_preds_embeds, proposals, obj_feats_nonlocal):
             if torch.numel(rel_pair_idx) == 0:
                 # assert torch.numel(pair_idx) == 0
