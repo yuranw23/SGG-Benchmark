@@ -233,7 +233,7 @@ class RUNetContext(nn.Module):
                                         self.hidden_dim)
 
         self.get_phr_feats = nn.Linear(self.obj_dim, self.hidden_dim)
-        embed_vecs = obj_edge_vectors(obj_class, wv_dir=self.cfg.GLOVE_DIR, wv_dim=self.embed_dim)
+        embed_vecs = obj_edge_vectors(obj_class, wv_type=self.cfg.MODEL.TEXT_EMBEDDING, wv_dir=self.cfg.GLOVE_DIR, wv_dim=self.embed_dim)
         self.obj_embed = nn.Embedding(self.num_obj_cls, self.embed_dim)
 
         with torch.no_grad():
