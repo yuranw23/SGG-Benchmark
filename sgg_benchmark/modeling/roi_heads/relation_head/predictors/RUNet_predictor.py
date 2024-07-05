@@ -42,6 +42,7 @@ class RUNetPredictor(BasePredictor):
         self.post_emb_o = nn.Linear(self.pooling_dim, self.pooling_dim)
         layer_init(self.post_emb_o, xavier=True)
         # self.post_emb_o.weight = torch.nn.init.xavier_normal(self.post_emb_o.weight, gain=1.0)
+        print(f'pooling_dim = {self.pooling_dim} || rel_classes = {self.rel_classes}')
         self.rel_compress = nn.Linear(self.pooling_dim + 64, self.rel_classes, bias=True)
         layer_init(self.rel_compress, xavier=True)
         # self.rel_compress.weight = torch.nn.init.xavier_normal(self.rel_compress.weight, gain=1.0)
